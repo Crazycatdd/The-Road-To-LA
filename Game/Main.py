@@ -16,6 +16,7 @@ def Options():
     print("There are no options nerd...")
     if input("Press enter to go back ") == "Chicken":
         print("A mysterious power blesses you")
+        mrgrauesclock.sleep(1000)
 
 playgame = False
 while True:
