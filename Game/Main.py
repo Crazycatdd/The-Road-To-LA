@@ -1,6 +1,7 @@
 import random as mrgraue
 import time as mrgrauesclock
 import Data
+import GameLogic
 
 def Display_Menu():
     print("Welcome to The Road To LA!")
@@ -16,7 +17,7 @@ def Options():
     print("There are no options nerd...")
     if input("Press enter to go back ") == "Chicken":
         print("A mysterious power blesses you")
-        mrgrauesclock.sleep(1000)
+        mrgrauesclock.sleep(2)
 
 playgame = False
 while True:
@@ -32,4 +33,18 @@ while True:
     if choice == "3":
         break
     Clear_Screen()
+    Data.PlayerName = input("What should we name you, traveler? ")
+    Clear_Screen()
+    print("Let's start the game")
+    mrgrauesclock.sleep(1)
+    Clear_Screen()
+    print("Let's start the game.")
+    mrgrauesclock.sleep(1)
+    Clear_Screen()
+    print("Let's start the game..")
+    mrgrauesclock.sleep(1)
+    Clear_Screen()
+    print("Let's start the game...")
+    mrgrauesclock.sleep(2)
+    #GameLogic.playgame(Data.PlayerName, )
     
