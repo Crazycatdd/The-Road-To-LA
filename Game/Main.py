@@ -1,4 +1,3 @@
-import random as mrgraue
 import time as mrgrauesclock
 import Data
 import GameLogic
@@ -36,15 +35,17 @@ while True:
     Data.PlayerName = input("What should we name you, traveler? ")
     Clear_Screen()
     print("Let's start the game")
-    mrgrauesclock.sleep(1)
+    mrgrauesclock.sleep(.65)
     Clear_Screen()
     print("Let's start the game.")
-    mrgrauesclock.sleep(1)
+    mrgrauesclock.sleep(.65)
     Clear_Screen()
     print("Let's start the game..")
-    mrgrauesclock.sleep(1)
+    mrgrauesclock.sleep(.65)
     Clear_Screen()
     print("Let's start the game...")
     mrgrauesclock.sleep(2)
-    #GameLogic.playgame(Data.PlayerName, )
+
+    GameLogic.playgame()
+    playgame = False
     
