@@ -5,6 +5,13 @@ import Data
 def Clear_Screen():
     print("\n" * 50)
 
+def DisplayLocation():
+    print("You have left {}, {}".format(Data.places[Data.location]["Name"], Data.places[Data.location]["State"]))
+    print("You have {} miles left untill {}, {}".format(Data.places[Data.location]["Miles To Next"] - Data.MilesDrivenUntillNext,Data.places[Data.location+1]["Name"], Data.places[Data.location+1]["State"]))
+    print("You are {} miles away from Santa Monica, Los Angeles, CA".format(Data.MilesLeft - Data.MilesDriven))
+
+    print("\nYou are driving a {}, you have {} miles left untill it's empty".format(Data.car, Data.TankLeft * Data.cars[Data.car]["Mileage"]))
+
 def playgame():
     print("A world where nobody cares for their environment")
     print("You are determined to change humanity...")
@@ -54,6 +61,18 @@ def playgame():
             input("You did not input a correct value [press enter]")
             Clear_Screen()
 
+    Data.TankLeft = Data.cars[Data.car]["Full Tank"]
+
     Clear_Screen()
 
     print("Nice Choice! Now let's start the game!!!")
+
+    mrgrauesclock.sleep(2)
+    Clear_Screen()
+
+    print("You decide to depart from Chicago on on November 5th, your goal is to make it to Santa Monica, Los Angeles")
+    input("[press enter]")
+
+    Clear_Screen()
+
+    DisplayLocation()
