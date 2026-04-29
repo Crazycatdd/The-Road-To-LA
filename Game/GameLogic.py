@@ -31,6 +31,11 @@ def Travel():
         Data.MilesDrivenUntillNext = 0
         Data.location += 1
         print("You have arrived in {}, and completely refuel your vehicle".format(Data.places[Data.location]["Name"]))
+        mrgrauesclock.sleep(2)
+        Data.CarbonEmissions += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+        Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+        if Data.location == 11:
+            Data.play = False
     if Data.TankLeft <= 0:
         print("You ran out of fuel, What do you wish to do?")
         choice = input("   1. Push your car to the nearest fuel station\n   2. attempt to crete natural fuel\n   3. Attempt to hitch a ride with a stranger")
@@ -42,7 +47,7 @@ def Travel():
                 Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
             else:
                 print("You cannot find a gas station and soon you die of starvation")
-                return 0
+                Data.play = False
         elif choice == "2":
             fuel  = mrgraue.randint(1,4)
             if fuel == 1:
@@ -51,18 +56,19 @@ def Travel():
                 Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
             elif fuel == 2:
                 print("You accidentaly create toxic gas and die")
-                return 0
+                Data.play = False
             else:
                 print("You fail to create gas. DONE")
-                return 0
+                Data.play = False
         elif choice == "3":
             hitch = mrgraue.randint(1, 15)
             if hitch == 1:
                 print("You hitch a ride and they take you all the way to Los Angeles")
-                return 0
+                Data.play = False
             else:
                 print("You cannot hitch a ride and die")
-                return 0
+                Data.play = False
+    # mrgrauesclock.sleep(2)
 
         
 def Fuel():
@@ -79,7 +85,7 @@ def Fuel():
 def DisplayLocation():
     print("You have left {}, {}".format(Data.places[Data.location]["Name"], Data.places[Data.location]["State"]))
     print("You have {} miles left untill {}, {}".format(Data.places[Data.location]["Miles To Next"] - Data.MilesDrivenUntillNext,Data.places[Data.location+1]["Name"], Data.places[Data.location+1]["State"]))
-    print("You are {} miles away from Santa Monica, Los Angeles, CA".format(Data.MilesLeft - Data.MilesDriven))
+    # print("You are {} miles away from Santa Monica, Los Angeles, CA".format(Data.MilesLeft - Data.MilesDriven))
 
     print("\nYou are driving a {}, you have {} miles left untill it's empty".format(Data.car, Data.TankLeft * Data.cars[Data.car]["Mileage"]))
 
@@ -146,7 +152,9 @@ def playgame():
     input("[press enter]")
 
     Clear_Screen()
-    while Data.places[Data.location]["Next"] != "END":
-        Menu()
-        if Data.location == 11:
+    Data.play = True
+    while Data.play == True:
+        if Data.play == False:
             break
+        Menu()
+    print("You Made IT!")

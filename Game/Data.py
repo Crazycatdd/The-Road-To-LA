@@ -6,6 +6,7 @@ MilesDriven = 0
 MilesDrivenUntillNext = 0
 TankLeft = 0
 CarbonEmissions = 0
+play = True
 
 cars = {
     "Honda civic" : {
@@ -95,6 +96,6 @@ places = {
         "Name" : "Santa Monica, Los Angeles",
         "State" : "CA",
         "Next" : "END",
-        "Miles To Next" : "END"
+        "Miles To Next" : 0
     }
 }
