@@ -5,25 +5,29 @@ location = 1
 MilesDriven = 0
 MilesDrivenUntillNext = 0
 TankLeft = 0
+CarbonEmissions = 0
 
 cars = {
     "Honda civic" : {
         "Type": "Gasoline",
         "Mileage" : 49,
         "Full Tank" : 12.4,
-        "Description" : "A standard car with a reliable mileage, not very green."
+        "Description" : "A standard car with a reliable mileage, not very green.",
+        "Fuel Chance" : 3
     },
     "Tesla Model 3" : {
         "Type" : "Electric",
         "Mileage" : 3.8,
         "Full Tank" : 70,
-        "Description" : "An everyday electric car that is fairly easy to charge"
+        "Description" : "An everyday electric car that is fairly easy to charge",
+        "Fuel Chance" : 5
     },
     "Advanced Electric Car" : {
         "Type" : "Electric",
         "Mileage" : 3,
         "Full Tank" : 70,
-        "Description" : "An electric vehicle that screams clean energy, difficult to charge."
+        "Description" : "An electric vehicle that screams clean energy, difficult to charge.",
+        "Fuel Chance" : 10
     }
 }
 places = {

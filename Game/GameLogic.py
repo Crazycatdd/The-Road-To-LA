@@ -5,6 +5,77 @@ import Data
 def Clear_Screen():
     print("\n" * 50)
 
+def Menu():
+    while True:
+        Clear_Screen()
+        DisplayLocation()
+        print("\n What do you choose to do: \n   1. Travel on the road\n   2. Find somewhere to fuel")
+        choice = input()
+        if choice == "1":
+            Travel()
+        elif choice == "2":
+            Fuel()
+        else:
+            print("Put in a valid value")
+            mrgrauesclock.sleep(2)
+
+def Travel():
+    Clear_Screen()
+    MilesDriven = mrgraue.randint(10, 60)
+    input("You decide to travel {} miles [press enter]".format(MilesDriven))
+    FuelUsed = MilesDriven / Data.cars[Data.car]["Mileage"]
+    Data.TankLeft -= FuelUsed
+    Data.MilesDrivenUntillNext += MilesDriven
+    Data.MilesLeft -= MilesDriven
+    if Data.places[Data.location]["Miles To Next"] - Data.MilesDrivenUntillNext <= 0:
+        Data.MilesDrivenUntillNext = 0
+        Data.location += 1
+        print("You have arrived in {}, and completely refuel your vehicle".format(Data.places[Data.location]["Name"]))
+    if Data.TankLeft <= 0:
+        print("You ran out of fuel, What do you wish to do?")
+        choice = input("   1. Push your car to the nearest fuel station\n   2. attempt to crete natural fuel\n   3. Attempt to hitch a ride with a stranger")
+        if choice == "1":
+            fuel = mrgraue.randint(1, 10)
+            if fuel == 1:
+                print("You find a fuel station, and manage to fuel your car")
+                Data.CarbonEmissions += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+                Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+            else:
+                print("You cannot find a gas station and soon you die of starvation")
+                return 0
+        elif choice == "2":
+            fuel  = mrgraue.randint(1,4)
+            if fuel == 1:
+                print("You manage to create fuel by using natural gas created by the human body")
+                Data.CarbonEmissions += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+                Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+            elif fuel == 2:
+                print("You accidentaly create toxic gas and die")
+                return 0
+            else:
+                print("You fail to create gas. DONE")
+                return 0
+        elif choice == "3":
+            hitch = mrgraue.randint(1, 15)
+            if hitch == 1:
+                print("You hitch a ride and they take you all the way to Los Angeles")
+                return 0
+            else:
+                print("You cannot hitch a ride and die")
+                return 0
+
+        
+def Fuel():
+    fuelChance = mrgraue.randint(1, Data.cars[Data.car]["Fuel Chance"])
+    if fuelChance == 1:
+        print("You managed to find somewhere to replenish your vehicle's fuel and continue your journey")
+        Data.CarbonEmissions += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+        Data.TankLeft += Data.cars[Data.car]["Full Tank"] - Data.TankLeft
+    else:
+        print("You could not find a place to fuel your vehicle, you decide to continue the drive")
+    mrgrauesclock.sleep(2)
+    Travel()
+
 def DisplayLocation():
     print("You have left {}, {}".format(Data.places[Data.location]["Name"], Data.places[Data.location]["State"]))
     print("You have {} miles left untill {}, {}".format(Data.places[Data.location]["Miles To Next"] - Data.MilesDrivenUntillNext,Data.places[Data.location+1]["Name"], Data.places[Data.location+1]["State"]))
@@ -47,12 +118,12 @@ def playgame():
     Clear_Screen()
 
     while True:
-        input1 = input("What do you wish to choose?\n   1. Honda Civic\n   2. Tesla Model 3\n   3. Advanced Electric Car")
+        input1 = input("What do you wish to choose?\n   1. Honda Civic\n   2. Tesla Model 3\n   3. Advanced Electric Car\n")
         if input1 == "1":
             Data.car = "Honda civic"
             break
         elif input1 == "2":
-            Data.car == "Tesla Model 3"
+            Data.car = "Tesla Model 3"
             break
         elif input1 == "3":
             Data.car = "Advanced Electric Car"
@@ -62,6 +133,7 @@ def playgame():
             Clear_Screen()
 
     Data.TankLeft = Data.cars[Data.car]["Full Tank"]
+    Data.CarbonEmissions = Data.TankLeft
 
     Clear_Screen()
 
@@ -74,5 +146,7 @@ def playgame():
     input("[press enter]")
 
     Clear_Screen()
-
-    DisplayLocation()
+    while Data.places[Data.location]["Next"] != "END":
+        Menu()
+        if Data.location == 11:
+            break
