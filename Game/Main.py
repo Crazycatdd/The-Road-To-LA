@@ -47,6 +47,4 @@ while True:
     mrgrauesclock.sleep(2)
 
     GameLogic.playgame()
-    print("f")
     playgame = False
-    

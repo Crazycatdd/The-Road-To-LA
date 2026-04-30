@@ -11,7 +11,7 @@ play = True
 cars = {
     "Honda civic" : {
         "Type": "Gasoline",
-        "Mileage" : 49,
+        "Mileage" : 28,
         "Full Tank" : 12.4,
         "Description" : "A standard car with a reliable mileage, not very green.",
         "Fuel Chance" : 3

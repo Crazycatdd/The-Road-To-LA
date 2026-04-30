@@ -6,7 +6,7 @@ def Clear_Screen():
     print("\n" * 50)
 
 def Menu():
-    while True:
+    while Data.play:
         Clear_Screen()
         DisplayLocation()
         print("\n What do you choose to do: \n   1. Travel on the road\n   2. Find somewhere to fuel")
@@ -68,7 +68,7 @@ def Travel():
             else:
                 print("You cannot hitch a ride and die")
                 Data.play = False
-    # mrgrauesclock.sleep(2)
+    mrgrauesclock.sleep(2)
 
         
 def Fuel():
@@ -90,6 +90,15 @@ def DisplayLocation():
     print("\nYou are driving a {}, you have {} miles left untill it's empty".format(Data.car, Data.TankLeft * Data.cars[Data.car]["Mileage"]))
 
 def playgame():
+    Data.PlayerName = ""
+    Data.MilesLeft = 2287.8
+    Data.car = ""
+    Data.location = 1
+    Data.MilesDriven = 0
+    Data.MilesDrivenUntillNext = 0
+    Data.TankLeft = 0
+    Data.CarbonEmissions = 0
+    Data.play = True
     print("A world where nobody cares for their environment")
     print("You are determined to change humanity...")
     
@@ -157,4 +166,26 @@ def playgame():
         if Data.play == False:
             break
         Menu()
-    print("You Made IT!")
+    Clear_Screen()
+    if(Data.location == 11):
+        input("You Made IT! Now let's discuss your carbon emissions [press enter]")
+    else:
+        input("You did not make it to Los Angeles, but let's still talk about your carbon emissions [press enter]")
+    if Data.car == "Honda civic":
+        print("\nYou chose the Honda Civic to take on your journey, it was the only gas-powered vehicle offered to you")
+        print("In the entirety of your trip you burned {} gallons of gas, that's not very green".format(Data.CarbonEmissions))
+        print("In the lifetime of a Honda Civic, it releases 30 tons of CO2!!")
+        print("As a society, we can do better by switching to a greener option\n\n")
+        input("[press enter]")
+    elif Data.car == "Tesla Model 3":
+        print("\nYou chose the Tesla Model 3, a much greener option than the honda civic!")
+        print("In the lifetime of a Tesla Model 3, it only releases around 16 tons of C02, 14 tons less than the Honda Civic")
+        print("Even though it is a greener option than the Honda, it still releases CO2")
+        print("As a society, we can do better by switching to a greener option\n\n")
+        input("[press enter]")
+    elif Data.car == "Advanced Electric Car":
+        print("\nYou Chose the Advanced Electric Car, the greenest option available")
+        print("While this car is fictional, our goal should be to create a greener car that only releases a few tons of C02 in it's entire lifetime")
+        print("As a society, we can do better by switching to a greener option\n\n")
+        input("[press enter]")
+    Clear_Screen()
